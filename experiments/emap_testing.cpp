@@ -72,13 +72,20 @@ int main()
 
   std::vector<std::string> benchmarks = epfl_benchmarks();
 
-  std::vector<std::string> my_benchmarks(benchmarks.begin(), benchmarks.begin() + 3);
-  int size = sizeof(my_benchmarks);
-  for (int i=0; i < size-1; i++) {
-    std::cout << my_benchmarks[i] << std::endl;
+  std::vector<std::string> my_benchmarks(benchmarks.begin(), benchmarks.begin());
+  // int size = sizeof(my_benchmarks);
+  for (auto const& benchmark : epfl_benchmarks()) {
+    fmt::print( "[i] processing {}\n", benchmark );
+    names_view<aig_network> aig;
+    if ( lorina::read_aiger( benchmark_path( benchmark ), aiger_reader( aig ) ) != lorina::return_code::success )
+    {
+      continue;
+    }
+
+    // std::cout << aig << std::endl;
   }
 
-
+ 
   // for ( auto const& benchmark : epfl_benchmarks() )
   // {
   //   fmt::print( "[i] processing {}\n", benchmark );

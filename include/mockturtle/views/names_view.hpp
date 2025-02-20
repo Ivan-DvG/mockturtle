@@ -44,6 +44,9 @@ namespace mockturtle
 {
 
 template<class Ntk>
+// i.e, names_view inherites from Ntk
+// Ntk it's a generic class that it's going to be defined once we define the instance
+// Example: names_view<aig> - Here Ntk = aig
 class names_view : public Ntk
 {
 public:

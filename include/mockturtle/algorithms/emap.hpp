@@ -828,8 +828,11 @@ public:
 
   cell_view<block_network> run_block()
   {
+    // Initialization of structures
     time_begin = clock::now();
 
+    // Initialize block network returns a pair (view, block_map)
+    // Remember: a view basically it's an interface for a network. In simple words, it's just a network
     auto [res, old2new] = initialize_block_network();
 
     /* multi-output initialization */
@@ -845,6 +848,7 @@ public:
     if ( !init_arrivals() )
       return res;
 
+    // Matching of nodes
     /* search for large matches */
     if ( ps.matching_mode == emap_params::structural || CutSize > 6 )
     {
